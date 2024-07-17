@@ -1,0 +1,16 @@
+outputs/*
+.vscode/*
+__pycache__/*
+__pycache__/
+*.pyc
+finetuning_gaussian.py 
+Extracted_log/*
+watermarked_image/*
+watermarked_decoder_classification_pth/*
+watermarked_decoder_pth/*
+data/*
+non_watermarked_image/*
+watermarked_image_32/*
+logs/*
+
+
