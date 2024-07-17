@@ -31,7 +31,9 @@
             - r_0.png
             - r_1.png
             - ...
-
+    
+    - 이 때 Watermarking 이미지에는 굳이 Train,val,test 이미지가 필요없으니까 모든 이미지들에 대해서 Watermarking Image로 만들기.
+    
 
 - 위와 같이 구성되어 있는 데이터셋에 대해서 **Invisible-Watermarking** 을 이용하여 Watermarking하여 non_watermarked_image 폴더에 저장
 - **Watermarking Message 길이에 따라서 따로따로 데이터셋을 만들어야함. (Message=16 일때 데이터셋과 Message=32일때 Dataset을 따로)**
@@ -78,6 +80,6 @@
 ## Notices
 - 일단, D-NeRF의 이미지셋은 800x800x3의 크기를 가지고 있으나, SC-GS의 Rendering Image는 400x400x3의 Shape을 가지고 있기 때문에, 
 - 기존 이미지셋에 Watermarking을 씌우기 위해서 400x400 Resize를 진행한 후, Watermarking 진행
-- C
+
 
 
