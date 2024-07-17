@@ -52,6 +52,8 @@
 
 ### 3. 워터마킹이 없는 SC-GS의 render Image에 대해서 성능 평가
 - 워터마킹을 씌우지 않은 D-NeRF 데이터셋에 pretrained SC-GS를 적용하여 랜더링 이미지를 뽑아냄
+    - 이때 기존의 D-NeRF 모델로 rendering할때는 pretrained-model이 있었지만, SC-GS에 대해서는 pretrained 된 모델을 못찾아서 동일하게 80_000iteration Training후 rendering 진행
+
 - 이 뽑아낸 랜더링 이미지들은 결과적으로 워터마킹이 없는 이미지이다. 따라서, 2번 Message Decoder에 입력으로 넣는다면 기존 Message를 복원하지 못해야함
 - 예를들어 b'1010101010'를 워터마킹했던 이미지들에 대해서 같은 메세지를 복원하는 Decoder에게 워터마킹을 하지않은 Raw Image를 넣게 되면 000100100 와 같이 복원을 잘 못해야함
 - Bitwise Accuracy를 기반으로 Render Image로부터 추출한 Message와 original Messasge 사이의 Bit Accuracy를 측정( 낮을수록 좋음) 
@@ -59,5 +61,23 @@
 
 
 ## Code
-1. 
+1. ```train_gui.py``` : SC-GS의 training code로 D-NeRF의 Dataset을 기반으로 훈련
+
+2. ```render.py``` : SC-GS를 Training 후, Image를 Rendering (여기서 만들어진 data로 3번 성능평가로 사용)
+
+3. ```utils/watermarking.utils.py``` : Watermarking 필요한 utils 저장 
+
+4. ```utils/stega_classifier.py``` : Stega-NeRF의 Decoder, Classifier 수정 
+
+5. ```message_train.py``` : , Watermarking Image, Message를 기반으로 Decoder Training 
+
+6. ```make_watermarking.py``` : Raw Image에 대해서 Invisible-Watermarking Framework를 통해서 watermarking 이미지 생성
+
+
+
+## Notices
+- 일단, D-NeRF의 이미지셋은 800x800x3의 크기를 가지고 있으나, SC-GS의 Rendering Image는 400x400x3의 Shape을 가지고 있기 때문에, 
+- 기존 이미지셋에 Watermarking을 씌우기 위해서 400x400 Resize를 진행한 후, Watermarking 진행
+- C
+
 
